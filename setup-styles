@@ -1,0 +1,52 @@
+npm install bootstrap ngx-bootstrap --save
+
+In app.module
+
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { ModalModule } from 'ngx-bootstrap/modal';
+
+@NgModule({
+  imports: [
+    BrowserModule,
+    BsDropdownModule.forRoot(),
+    TooltipModule.forRoot(),
+    ModalModule.forRoot()
+  ],
+  // ...
+})
+export class AppBootstrapModule {}
+
+
+As an alternative, if you would like to organize the ngx-bootstrap in a different module 
+  (just for organization purposes in case you need to import many bs modules and don’t want to clutter your app.module), 
+ you can create a module app-bootstrap.module.ts, import the Bootstrap modules (using forRoot()) 
+  and also declare them in the exports section (so they become available to other modules as well).
+  
+  import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { ModalModule } from 'ngx-bootstrap/modal';
+
+@NgModule({
+  imports: [
+    CommonModule,
+    BsDropdownModule.forRoot(),
+    TooltipModule.forRoot(),
+    ModalModule.forRoot()
+  ],
+  exports: [BsDropdownModule, TooltipModule, ModalModule]
+})
+export class AppBootstrapModule {}
+
+
+import { AppBootstrapModule } from './app-bootstrap/app-bootstrap.module';
+
+@NgModule({
+  imports: [BrowserModule, AppBootstrapModule],
+  // ...
+})
+export class AppModule {}
+
