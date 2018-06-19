@@ -1,0 +1,48 @@
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+/* Routing Modules */
+import { AppRoutingModule } from './app-routing.module';
+import { RouterModule, Routes } from '@angular/router';
+ 
+/* Feature Modules */
+import { HomeModule, HomeComponent } from './home'
+import { ProductModule, ProductHomeComponent } from './products'
+import { CartModule } from './cart/cart.module'
+
+import { AppComponent } from './app.component'
+  
+/* App Root */
+
+
+export const ROUTES: Routes = [
+  {
+    path: 'settings',
+    loadChildren: './products/product.module#ProductModule'
+  }
+];
+
+
+
+@NgModule({
+
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule
+    , HomeModule
+    , ProductModule
+    , CartModule
+    , RouterModule.forRoot(ROUTES)
+
+  ],
+
+  exports: [],
+
+  providers: [],
+
+  bootstrap: [HomeComponent]
+})
+
+export class AppModule {
+
+}
