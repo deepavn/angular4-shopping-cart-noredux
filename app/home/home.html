@@ -1,0 +1,30 @@
+<layout-header></layout-header>
+
+<div class="container">In Home.
+
+    <button (click)="onClickMe(button2.value)" #button1 value="Button 1">I am button1. Click Me</button>
+
+    <button (click)="onClickMe(button1.value)" #button2 value="Button 2">I am button2. Click Me</button> {{clickMessage}}
+
+    <input value="Momo"  />
+
+    <input id="myInput" name="myInput" class="form-control" required minlength="4" 
+        forbiddenName="kohinoor" [(ngModel)]="product.productname" #datasummary="ngModel" />
+
+    <div *ngIf="datasummary.invalid && (datasummary.dirty || datasummary.touched)" class="alert alert-danger">
+
+        <div *ngIf="datasummary.errors.required">
+           Product Name is required.
+        </div>
+        <div *ngIf="datasummary.errors.minlength">
+           Product Name must be at least 4 characters long.
+        </div>
+        <div *ngIf="datasummary.errors.forbiddenName">
+            Product cannot be Kohinoor.
+        </div>
+
+    </div>
+
+</div>
+<router-outlet></router-outlet>
+<layout-footer></layout-footer>
