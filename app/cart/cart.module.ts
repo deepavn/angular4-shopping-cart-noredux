@@ -20,7 +20,7 @@ const cartRouting: ModuleWithProviders = RouterModule.forChild([
     cartRouting  
   ],
   declarations: [
-   // CartItemsComponent, 
+   CartItemsComponent, 
     CartQuantityComponent
   ],
   providers: [CartService]
